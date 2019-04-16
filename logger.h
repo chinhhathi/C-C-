@@ -9,7 +9,6 @@ using namespace std;
 class logger {
     public : logger();
     void WriteMessage(QString message, QString time);
-
     private : QFile file;
 };
 

@@ -69,6 +69,10 @@ void ChatServer::on_btnStart_clicked()
     port = ui->lineEditPort->text().toInt();
 
     //server bat dau lang nghe ket noi
+    QString port_str = QString::number(port);
+    QString line = "Connect port: "+ port_str +"\n";
+
+    logger.WriteMessage(line.arg(port), getTime());
 
     bool b = server->listen(server_addr, port);
 
@@ -233,14 +237,12 @@ void ChatServer::receiveMessage()
             QByteArray line = buffer->readLine();//doc tung dong
 
             //Gui broadcast den tat ca cac ket noi dang quan ly
+            logger.WriteMessage(line, getTime());
 
             foreach (QTcpSocket* connection, connections)
 
             {
-
-                    connection->write(line); //Gui bang cach ghi ra socket
-                    logger.WriteMessage(line, getTime());
-
+                    connection->write(line); //Gui bang cach ghi ra socket                
             }
 
     }
