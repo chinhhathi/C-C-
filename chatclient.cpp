@@ -84,6 +84,7 @@ ChatClient::~ChatClient()
 
 void ChatClient::setLineEditPort(QString text)
 {
+
     ui->spinBoxPort->setValue(text.toInt());
 }
 
